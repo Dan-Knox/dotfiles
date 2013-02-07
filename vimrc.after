@@ -1,0 +1,10 @@
+" Map Ctrl+l -> tab right
+" Map Ctrl+h -> tab left
+" Map Ctrl+n -> new tab
+
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-n> :tabnew<CR>
+
+" Set Font for GVIM/MVIM
+:set guifont=Consolas:h16
