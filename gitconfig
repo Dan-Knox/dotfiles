@@ -1,0 +1,9 @@
+[user]
+	name = Dan Knox
+	email = dknox@threedotloft.com
+[color]
+	ui = true
+[core]
+	editor = vim -f
+[github]
+	user = DanKnox
