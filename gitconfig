@@ -5,5 +5,3 @@
 	ui = true
 [core]
 	editor = vim -f
-[github]
-	user = DanKnox
