@@ -12,6 +12,17 @@ pushd $HOME
       if [[ $file == bootstrap.zsh ]]; then
         continue
       fi
+
+      # Allow for skipping the .gitconfig for
+      # situations like work.
+      if [[ $file == gitconfig ]]; then
+        echo "Copy git config? (y/n): "
+        read answer
+        if [ $answer = "n" ]; then
+          continue
+        fi
+      fi
+
       dotfile="${HOME}/.${file}"
 
       if [ -f $dotfile ]; then

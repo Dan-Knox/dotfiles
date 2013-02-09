@@ -2,22 +2,33 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
 
-export PATH=$PATH:$HOME/bin
+# My custom theme
+ZSH_THEME="dank"
+
+# Add user ~/bin to path if it exists
+if [ -d $HOME/bin ] ; then
+  export PATH=$HOME/bin:$PATH
+fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
-  alias vim='mvim -v'
+  # OSX specific configuration
+
+  alias vim="mvim -v"
+
+else
+  # Linux specific configuration
+
+  alias mvim="gvim"
+  export PATH=$PATH:/opt/vagrant/bin
+  export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
 fi
 
 alias lein='nocorrect lein'
+alias thin='nocorrect thin'
 
 # Use hub wrapper for Git
 eval "$(hub alias -s)"
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="dank"
 
 # Set default Thin port for foreman
 export PORT=3000
@@ -47,7 +58,7 @@ plugins=(git bundler brew gem)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell sessio
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH

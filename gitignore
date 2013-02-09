@@ -22,3 +22,6 @@
 
 # Ignore OSX tmp files
 .DS_Store
+
+# Ignore Gnome3 fontconfig folder
+/fontconfig
