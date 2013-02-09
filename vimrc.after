@@ -5,18 +5,3 @@
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
-
-" Set Font for GVIM/MVIM
-if has("unix")
-  let s:uname = system("uname")
-
-  if s:uname == "Darwin"
-    " OSX configuration
-    :set guifont=Consolas:h16
-  endif
-
-  if s:uname == "Linux"
-    " Obviously Linux configuration
-    :set guifont=Monospace
-  endif
-endif

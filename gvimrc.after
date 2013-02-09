@@ -1,1 +1,14 @@
 color github
+
+" Set Font for GVIM/MVIM
+let s:uname = system("uname")
+
+if s:uname == "Darwin\n"
+  " OSX configuration
+  :set guifont=Consolas:h16
+endif
+
+if s:uname == "Linux\n"
+  " Obviously Linux configuration
+  :set guifont=Monospace
+endif
