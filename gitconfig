@@ -5,3 +5,5 @@
 	ui = true
 [core]
 	editor = vim -f
+[push]
+	default = current
