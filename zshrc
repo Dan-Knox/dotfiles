@@ -14,6 +14,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   # OSX specific configuration
 
   alias vim="mvim -v"
+  PATH=/usr/local/bin:$PATH
 
 else
   # Linux specific configuration
