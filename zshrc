@@ -14,6 +14,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   # OSX specific configuration
 
   alias vim="mvim -v"
+  alias flushdns="dscacheutil -flushcache"
   PATH=/usr/local/bin:$PATH
 
 else
