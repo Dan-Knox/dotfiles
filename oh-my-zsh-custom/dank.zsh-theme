@@ -78,12 +78,12 @@ git_super_status() {
 }
 
 setopt prompt_subst
-PROMPT='%{$fg_bold[blue]%}%m %{$reset_color%} %~/ %{$reset_color%}$(git_super_status)%{$reset_color%} '
+PROMPT='%{$fg_bold[blue]%}%m %{$reset_color%} %~/ %{$reset_color%}$(git_super_status)%{$reset_color%}'
 
 
 ZSH_THEME_GIT_PROMPT_NOCACHE="true"
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{magenta}[%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%F{magenta}]%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%F{magenta}]%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}●"
