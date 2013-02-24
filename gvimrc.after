@@ -1,5 +1,5 @@
 " color github
-color desert256
+color railscasts
 
 " Set Font for GVIM/MVIM
 let s:uname = system("uname")
