@@ -1,4 +1,5 @@
-color github
+" color github
+color desert256
 
 " Set Font for GVIM/MVIM
 let s:uname = system("uname")
