@@ -1,0 +1,4 @@
+gem: --no-ri --no-rdoc
+:update_sources: true
+:ssl_ca_cert: ~/dotfiles/static/root_cert_bundle.pem
+:verbose: true
