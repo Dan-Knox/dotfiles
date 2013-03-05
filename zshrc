@@ -15,7 +15,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
 
   alias vim="mvim -v"
   alias flushdns="dscacheutil -flushcache"
-  PATH=/usr/local/bin:$PATH
+  PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 else
   # Linux specific configuration
