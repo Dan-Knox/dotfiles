@@ -13,6 +13,10 @@ pushd $HOME
         continue
       fi
 
+      if [[ $file == bin ]]; then
+        continue
+      fi
+
       # Allow for skipping the .gitconfig for
       # situations like work.
       if [[ $file == gitconfig ]]; then

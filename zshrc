@@ -29,6 +29,8 @@ fi
 alias lein='nocorrect lein'
 alias thin='nocorrect thin'
 
+function git-fetch-all-branches { for remote in `git branch -r `; do git checkout --track $remote; done }
+
 # Use hub wrapper for Git
 eval "$(hub alias -s)"
 

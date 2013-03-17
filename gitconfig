@@ -5,6 +5,7 @@
 	ui = true
 [core]
 	editor = vim -f
+	whitespace = trailing-whitespace,tab-in-indent,tabwidth=2
 [push]
 	default = current
 [alias]
