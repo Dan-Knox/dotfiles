@@ -34,6 +34,11 @@ function git-fetch-all-branches { for remote in `git branch -r `; do git checkou
 # Use hub wrapper for Git
 eval "$(hub alias -s)"
 
+# Use git-name-email-switcher to correctly set my author
+# and committer name and email based on the directory I am
+# working in.
+source $HOME/.oh-my-zsh-custom/git-name-email-switcher.zsh
+
 # Set default Thin port for foreman
 export PORT=3000
 
