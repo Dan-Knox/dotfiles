@@ -17,6 +17,11 @@ if [ "$(uname -s)" = "Darwin" ]; then
   alias flushdns="dscacheutil -flushcache"
   PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+  # Set apple gcc path for RVM
+  export CC=/usr/local/bin/gcc-4.2
+  export CPPFLAGS=-I/opt/X11/include
+  export LDFLAGS=-L/usr/local/opt/openssl/lib
+
 else
   # Linux specific configuration
 
@@ -28,6 +33,7 @@ fi
 
 alias lein='nocorrect lein'
 alias thin='nocorrect thin'
+alias htop='nocorrect htop'
 
 function git-fetch-all-branches { for remote in `git branch -r `; do git checkout --track $remote; done }
 
