@@ -66,7 +66,7 @@ if [ -f "$(which jq)" ]; then
 fi
 
 # Use hub wrapper for Git
-if [ -f "$(which jq)" ]; then
+if [ -f "$(which hub)" ]; then
   eval "$(hub alias -s)"
 fi
 
