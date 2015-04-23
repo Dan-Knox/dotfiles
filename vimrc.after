@@ -9,3 +9,6 @@ map  <C-n> :tabnew<CR>
 " Enable spell checking for markdown files
 au BufRead *.md setlocal spell
 au BufRead *.markdown setlocal spell
+
+" Make all gists private by default. Use :Gist -P to override
+let g:gist_post_private = 1

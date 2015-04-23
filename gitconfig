@@ -34,3 +34,12 @@
   interactive = auto
   status = auto
   ui = true
+[github]
+	user = DanKnox
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
