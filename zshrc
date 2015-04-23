@@ -55,6 +55,12 @@ alias bi='bundle install'
 alias brc='bundle exec rails c'
 alias brg='bundle exec rails g'
 
+# Enable terminal colors for common commands
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 function git-fetch-all-branches { for remote in `git branch -r `; do git checkout --track $remote; done }
 
 # Dash search straight from the console
