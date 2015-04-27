@@ -47,9 +47,12 @@ else
 
 fi
 
+# Fix zsh autocorrects
 alias lein='nocorrect lein'
 alias thin='nocorrect thin'
 alias htop='nocorrect htop'
+
+# Rails aliases
 alias b='bundle exec'
 alias bi='bundle install'
 alias brc='bundle exec rails c'
@@ -60,6 +63,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias c='pygmentize'
 
 function git-fetch-all-branches { for remote in `git branch -r `; do git checkout --track $remote; done }
 
@@ -74,6 +78,15 @@ fi
 # Use hub wrapper for Git
 if [ -f "$(which hub)" ]; then
   eval "$(hub alias -s)"
+fi
+
+# Use thefuck for quick shell command corrections
+if [ -f "$(which thefuck)" ]; then
+  alias fuck='$(thefuck $(fc -ln -1))'
+  #Or in config.fish:
+  #function fuck
+  #  eval (thefuck $history[1])
+  #end
 fi
 
 # Use Pry as a rails console
@@ -107,7 +120,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew gem)
+plugins=(git brew gem atom)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -135,4 +148,9 @@ if [ -d $HOME/bin ] ; then
 fi
 
 export PATH="./bin:$PATH"
-export NODE_PATH=/usr/local/lib/node:/usr/local/lib/node_modules
+export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules:./node_modules"
+
+# Load 'z' for fast directory switching
+if [ -f `brew --prefix`/etc/profile.d/z.sh ] ; then
+  . `brew --prefix`/etc/profile.d/z.sh
+fi
