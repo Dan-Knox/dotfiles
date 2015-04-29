@@ -6,7 +6,7 @@ ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
 export BYOBU_PREFIX=$(brew --prefix)
 
 # My custom theme
-ZSH_THEME="dank"
+ZSH_THEME="dank_two"
 #. ~/.janus/powerline/powerline/bindings/zsh/powerline.zsh
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
@@ -35,6 +35,12 @@ if [ "$(uname -s)" = "Darwin" ]; then
   #export LDFLAGS=-L/usr/local/opt/openssl/lib
 
   export BUNDLER_EDITOR="mvim"
+  export EDITOR="mvim"
+
+  # Load 'z' for fast directory switching
+  if [ -f `brew --prefix`/etc/profile.d/z.sh ] ; then
+    . `brew --prefix`/etc/profile.d/z.sh
+  fi
 
   function add_space_to_dock { defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}' }
 
@@ -120,7 +126,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew gem atom)
+plugins=(git git-hubflow git-flow rbenv brew gem atom)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -149,8 +155,3 @@ fi
 
 export PATH="./bin:$PATH"
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules:./node_modules"
-
-# Load 'z' for fast directory switching
-if [ -f `brew --prefix`/etc/profile.d/z.sh ] ; then
-  . `brew --prefix`/etc/profile.d/z.sh
-fi
