@@ -9,6 +9,18 @@ map  <C-n> :tabnew<CR>
 " Enable spell checking for markdown files
 au BufRead *.md setlocal spell
 au BufRead *.markdown setlocal spell
+au BufRead *.ejs setlocal ft=html
+
+" Autoreload the janus vimr config files when modified
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+  autocmd BufWritePost "$HOME/.vimrc.after" source "$HOME/.vimrc.after"
+  autocmd BufWritePost "$HOME/.vimrc.before" source "$HOME`/.vimrc.before"
+  autocmd BufWritePost "$HOME/.gvimrc.before" source "$HOME/.gvimrc.before"
+augroup END " }
 
 " Make all gists private by default. Use :Gist -P to override
 let g:gist_post_private = 1
+
+set nonumber

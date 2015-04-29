@@ -137,6 +137,10 @@ if [ -d $HOME/.rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
+# Load nvm (Node Version Manager)
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # Chromium Depot Tools
 if [ -d $HOME/code/tools/depot_tools ]; then
   export PATH="$HOME/code/tools/depot_tools:$PATH"
