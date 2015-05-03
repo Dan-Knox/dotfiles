@@ -76,6 +76,10 @@ function git-fetch-all-branches { for remote in `git branch -r `; do git checkou
 # Dash search straight from the console
 function dash { open "dash://{$*}" }
 
+# NPM aliases
+alias npmig='npm install --global'
+alias npmid='npm install --save-dev'
+
 # Use jq for basic JSON formatting from the comamnd line
 if [ -f "$(which jq)" ]; then
   function jcat { cat $@ | jq '.' }
@@ -145,7 +149,7 @@ fi
 
 # Load nvm (Node Version Manager)
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+source "$(brew --prefix nvm)/nvm.sh"
 
 # Chromium Depot Tools
 if [ -d $HOME/code/tools/depot_tools ]; then

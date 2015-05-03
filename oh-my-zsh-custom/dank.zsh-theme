@@ -4,8 +4,6 @@ PROMPT=$'%{$fg_bold[blue]%}%n %{$fg[white]%}at %{$fg_bold[cyan]%}%M %{$fg[white]
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 
-#ZSH_THEME_GIT_PROMPT_SUFFIX=" "
-
 # Text to display if the branch is dirty
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 
@@ -26,12 +24,6 @@ ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}✖"
 ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[blue]%}✚"
 ZSH_THEME_GIT_PROMPT_REMOTE=""
 #ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
-
-# Colors vary depending on time lapsed.
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
-ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM="%{$fg[yellow]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 
 function rbenv_prompt_info() { echo "$(ruby -v | cut -f 2 -d ' ')" }
 
