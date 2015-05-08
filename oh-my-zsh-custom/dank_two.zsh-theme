@@ -5,7 +5,8 @@
 PROMPT=$'\n$(user_at_host)% %{$reset_color%}$(my_git_prompt) : %~\n$(colorized_time) [${ret_status}] $ '
 
 function update_clock_every_second() {
-  setopt PROMPT_SUBST
+  #autoload -X
+  #setopt PROMPT_SUBST
   TMOUT=1
 
   TRAPALRM() {
@@ -81,7 +82,7 @@ local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%})%?%{$reset_color%}"
 if [ "$(uname -s)" = "Darwin" ]; then
   local eyes='👀'
   local tounge='👅'
-  RPROMPT=$'${eyes}\n${tounge}'
+  #RPROMPT=$'${eyes}\n${tounge}'
 fi
 
 #PROMPT=$'%{$fg[blue]%}%n %{$fg[white]%}at %{$fg_bold[cyan]%}%M %{$fg[white]%}in %{$reset_color%}%~%b%{$reset_color%} %{$fg[cyan]%}$(check_git_prompt_info)%{$fg[white]%}%{$reset_color%}$(git_prompt_status)%{$fg[blue]%})%{$reset_color%}

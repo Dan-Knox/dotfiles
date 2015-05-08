@@ -1,3 +1,7 @@
+# Start tmux in command mode when opening a new prompt
+#export BYOBU_PREFIX=/usr/local
+#[[ $TERM != "screen" ]] && exec tmux -CC new -s hot_key # && tmux set -g aggressive-resize off;
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
@@ -43,6 +47,41 @@ if [ "$(uname -s)" = "Darwin" ]; then
   fi
 
   function add_space_to_dock { defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}' }
+
+  # Change the OS X tab color from the console.
+
+  function tab_red () {
+    set_tab_color 255 50 0
+  }
+
+  function tab_blue () {
+    set_tab_color 0 50 100
+  }
+
+  function tab_green () {
+    set_tab_color 50 100 0
+  }
+
+  function tab_yellow () {
+    set_tab_color 140 140 0
+  }
+
+  function tab_teal () {
+    set_tab_color 0 140 140
+  }
+
+  # Takes 3 integers representing R G B
+  function set_tab_color () {
+    local red="\033]6;1;bg;red;brightness;$1\a"
+    local green="\033]6;1;bg;green;brightness;$2\a"
+    local blue="\033]6;1;bg;blue;brightness;$3\a"
+    echo -en $red
+    echo -en $blue
+    echo -en $green
+  }
+
+  # Enable byobu
+  export BYOBU_PREFIX=$(brew --prefix)
 
 else
   # Linux specific configuration
@@ -137,9 +176,12 @@ source $ZSH/oh-my-zsh.sh
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+# Add byobu to the path
+export PATH=$HOME/.byobu/bin:$PATH
+
 # Node.js Paths
 export NODE_PATH="/usr/local/lib/node"
-export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="/usr/local/share/npm/bin:./node_modules/.bin:$PATH"
 
 # Load rbenv
 if [ -d $HOME/.rbenv ]; then
@@ -150,6 +192,8 @@ fi
 # Load nvm (Node Version Manager)
 export NVM_DIR=~/.nvm
 source "$(brew --prefix nvm)/nvm.sh"
+export NODE_PATH=$NODE_PATH:"~/.nvm/v0.10.38/lib/node_modules"
+export PATH="$PATH:/usr/local/share/npm/bin"
 
 # Chromium Depot Tools
 if [ -d $HOME/code/tools/depot_tools ]; then

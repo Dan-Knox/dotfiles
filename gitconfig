@@ -6,7 +6,7 @@
 [core]
 	editor = vim -f
 	whitespace = trailing-whitespace,tab-in-indent,tabwidth=2
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/dknox/.gitignore
 [branch]
   autosetuprebase = always
 [push]
@@ -47,3 +47,9 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
