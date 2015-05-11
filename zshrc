@@ -8,6 +8,7 @@ ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
 
 #export BYOBU_PREFIX=/usr/local/Cellar/byobu/5.70
 export BYOBU_PREFIX=$(brew --prefix)
+tmux set -g aggressive-resize off
 
 # My custom theme
 ZSH_THEME="dank_two"
@@ -79,9 +80,6 @@ if [ "$(uname -s)" = "Darwin" ]; then
     echo -en $blue
     echo -en $green
   }
-
-  # Enable byobu
-  export BYOBU_PREFIX=$(brew --prefix)
 
 else
   # Linux specific configuration
@@ -180,8 +178,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH=$HOME/.byobu/bin:$PATH
 
 # Node.js Paths
-export NODE_PATH="/usr/local/lib/node"
-export PATH="/usr/local/share/npm/bin:./node_modules/.bin:$PATH"
+#export NODE_PATH="/usr/local/lib/node"
+#export PATH="/usr/local/share/npm/bin:./node_modules/.bin:$PATH"
 
 # Load rbenv
 if [ -d $HOME/.rbenv ]; then
@@ -190,10 +188,13 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 # Load nvm (Node Version Manager)
+#export NVM_DIR=~/.nvm
+#source "$(brew --prefix nvm)/nvm.sh"
+#export NODE_PATH=$NODE_PATH:"~/.nvm/v0.10.38/lib/node_modules"
+##export PATH="$PATH:/usr/local/share/npm/bin"
+#export NODE_PATH=
 export NVM_DIR=~/.nvm
-source "$(brew --prefix nvm)/nvm.sh"
-export NODE_PATH=$NODE_PATH:"~/.nvm/v0.10.38/lib/node_modules"
-export PATH="$PATH:/usr/local/share/npm/bin"
+source $(brew --prefix nvm)/nvm.sh
 
 # Chromium Depot Tools
 if [ -d $HOME/code/tools/depot_tools ]; then
@@ -206,4 +207,4 @@ if [ -d $HOME/bin ] ; then
 fi
 
 export PATH="./bin:$PATH"
-export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules:./node_modules"
+#export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules:./node_modules"
