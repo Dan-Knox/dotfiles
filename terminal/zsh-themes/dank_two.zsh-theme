@@ -13,7 +13,6 @@ function update_clock_every_second() {
       zle reset-prompt
   }
 }
-update_clock_every_second
 
 function my_git_prompt() {
   tester=$(git rev-parse --git-dir 2> /dev/null) || return
