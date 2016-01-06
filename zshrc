@@ -1,20 +1,74 @@
-# Start tmux in command mode when opening a new prompt
-#export BYOBU_PREFIX=/usr/local
-#[[ $TERM != "screen" ]] && exec tmux -CC new -s hot_key # && tmux set -g aggressive-resize off;
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/dknox/.oh-my-zsh
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="ys"
 
-#export BYOBU_PREFIX=/usr/local/Cellar/byobu/5.70
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/dotfiles/terminal/zsh-plugins
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(
+	git git-hubflow git-flow rbenv
+	brew gem atom hub bundler nvm
+	rbenv mux
+)
+
+# Source Oh-My-ZSH
+source $ZSH/oh-my-zsh.sh
+
 export BYOBU_PREFIX=$(brew --prefix)
-tmux set -g aggressive-resize off
 
-# My custom theme
-ZSH_THEME="dank_two"
+# Powerline
 #. ~/.janus/powerline/powerline/bindings/zsh/powerline.zsh
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
+export JAVA_HOME="/usr/libexec/java_home"
 
 # Set up the correct paths for Golang
 export GOPATH="$HOME/code/go"
@@ -27,10 +81,8 @@ fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
   # OSX specific configuration
-
   alias vim="mvim -v"
   alias flushdns="dscacheutil -flushcache"
-  export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
   # Set apple gcc path for RVM
   #export CC="/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/gcc-4.2"
@@ -86,7 +138,6 @@ else
 
   alias mvim="gvim"
   export PATH=$PATH:/opt/vagrant/bin
-  export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 fi
 
@@ -102,10 +153,6 @@ alias brc='bundle exec rails c'
 alias brg='bundle exec rails g'
 
 # Enable terminal colors for common commands
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias c='pygmentize'
 
 function git-fetch-all-branches { for remote in `git branch -r `; do git checkout --track $remote; done }
@@ -130,10 +177,6 @@ fi
 # Use thefuck for quick shell command corrections
 if [ -f "$(which thefuck)" ]; then
   alias fuck='$(thefuck $(fc -ln -1))'
-  #Or in config.fish:
-  #function fuck
-  #  eval (thefuck $history[1])
-  #end
 fi
 
 # Use Pry as a rails console
@@ -150,36 +193,11 @@ export PORT=3000
 # Set redis url
 export REDISTOGO_URL='redis://localhost:6379'
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-hubflow git-flow rbenv brew gem atom)
-
-source $ZSH/oh-my-zsh.sh
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Add byobu to the path
 export PATH=$HOME/.byobu/bin:$PATH
-
-# Node.js Paths
-#export NODE_PATH="/usr/local/lib/node"
-#export PATH="/usr/local/share/npm/bin:./node_modules/.bin:$PATH"
 
 # Load rbenv
 if [ -d $HOME/.rbenv ]; then
@@ -188,13 +206,8 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 # Load nvm (Node Version Manager)
-#export NVM_DIR=~/.nvm
-#source "$(brew --prefix nvm)/nvm.sh"
-#export NODE_PATH=$NODE_PATH:"~/.nvm/v0.10.38/lib/node_modules"
-##export PATH="$PATH:/usr/local/share/npm/bin"
-#export NODE_PATH=
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+. $(brew --prefix nvm)/nvm.sh
 
 # Chromium Depot Tools
 if [ -d $HOME/code/tools/depot_tools ]; then
@@ -207,4 +220,3 @@ if [ -d $HOME/bin ] ; then
 fi
 
 export PATH="./bin:$PATH"
-#export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules:./node_modules"
