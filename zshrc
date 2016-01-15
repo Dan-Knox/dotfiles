@@ -5,7 +5,7 @@ export ZSH=/Users/dknox/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
+ZSH_THEME="../zsh-themes/knox"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -57,13 +57,19 @@ ZSH_CUSTOM=$HOME/dotfiles/terminal/zsh-plugins
 plugins=(
 	git git-hubflow git-flow rbenv
 	brew gem atom hub bundler nvm
-	rbenv mux
+	rbenv mux battery tmux osx
 )
 
 # Source Oh-My-ZSH
 source $ZSH/oh-my-zsh.sh
 
 export BYOBU_PREFIX=$(brew --prefix)
+
+# Set up terminal colors
+export BASE16_SHELL=~/dotfiles/terminal/base16-builder/output/shell
+[[ -f $BASE16_SHELL ]] && source "$BASE16_SHELL/base16-flat.light.sh"
+
+source "$(brew --prefix)/etc/grc.bashrc"
 
 # Powerline
 #. ~/.janus/powerline/powerline/bindings/zsh/powerline.zsh
@@ -90,6 +96,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
   #export CPP="/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/cpp-4.2"
   #export CPPFLAGS=-I/opt/X11/include
   #export LDFLAGS=-L/usr/local/opt/openssl/lib
+
+  export HOMEBREW_GITHUB_API_TOKEN="019607d2860602e02ee4e6fa8b259c3f15a1c09a"
 
   export BUNDLER_EDITOR="mvim"
   export EDITOR="mvim"
@@ -163,6 +171,7 @@ function dash { open "dash://{$*}" }
 # NPM aliases
 alias npmig='npm install --global'
 alias npmid='npm install --save-dev'
+alias npmis='npm install --save'
 
 # Use jq for basic JSON formatting from the comamnd line
 if [ -f "$(which jq)" ]; then
@@ -176,7 +185,7 @@ fi
 
 # Use thefuck for quick shell command corrections
 if [ -f "$(which thefuck)" ]; then
-  alias fuck='$(thefuck $(fc -ln -1))'
+  eval $(thefuck --alias)
 fi
 
 # Use Pry as a rails console
@@ -208,6 +217,7 @@ fi
 # Load nvm (Node Version Manager)
 export NVM_DIR=~/.nvm
 . $(brew --prefix nvm)/nvm.sh
+export PATH="$PATH:./node_modules/.bin"
 
 # Chromium Depot Tools
 if [ -d $HOME/code/tools/depot_tools ]; then
