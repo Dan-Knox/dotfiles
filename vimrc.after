@@ -24,3 +24,5 @@ augroup END " }
 let g:gist_post_private = 1
 
 set nonumber
+
+set mouse=a

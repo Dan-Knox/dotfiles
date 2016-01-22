@@ -77,8 +77,10 @@ source "$(brew --prefix)/etc/grc.bashrc"
 export JAVA_HOME="/usr/libexec/java_home"
 
 # Set up the correct paths for Golang
-export GOPATH="$HOME/code/go"
-export PATH=$PATH:$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
+export GOROOT=$(brew --prefix go)/libexec
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Load sensitive environment variables if they exist
 if [ -f $HOME/secrets.zsh ]; then
@@ -97,7 +99,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   #export CPPFLAGS=-I/opt/X11/include
   #export LDFLAGS=-L/usr/local/opt/openssl/lib
 
-  export HOMEBREW_GITHUB_API_TOKEN="019607d2860602e02ee4e6fa8b259c3f15a1c09a"
+  export HOMEBREW_GITHUB_API_TOKEN="3fe80cf0ca0bfab29245029dcff4b9fea0a0cef7"
 
   export BUNDLER_EDITOR="mvim"
   export EDITOR="mvim"
@@ -153,6 +155,8 @@ fi
 alias lein='nocorrect lein'
 alias thin='nocorrect thin'
 alias htop='nocorrect htop'
+alias gulp='nocorrect gulp'
+alias jest='nocorrect jest'
 
 # Rails aliases
 alias b='bundle exec'
@@ -230,3 +234,8 @@ if [ -d $HOME/bin ] ; then
 fi
 
 export PATH="./bin:$PATH"
+
+# Set up the docker configuration
+function activate_docker!() {
+  eval $(docker-machine env default)
+}
