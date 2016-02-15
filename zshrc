@@ -1,3 +1,7 @@
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/help
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/dknox/.oh-my-zsh
 
