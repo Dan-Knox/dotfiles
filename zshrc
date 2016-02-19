@@ -1,4 +1,7 @@
-unalias run-help
+if ($(alias -g run-help)) {
+  unalias run-help
+}
+
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
@@ -103,7 +106,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   #export CPPFLAGS=-I/opt/X11/include
   #export LDFLAGS=-L/usr/local/opt/openssl/lib
 
-  export HOMEBREW_GITHUB_API_TOKEN="3fe80cf0ca0bfab29245029dcff4b9fea0a0cef7"
+  export HOMEBREW_GITHUB_API_TOKEN="89065f1a748d7af06970f7f69d494dcc2be889ca"
 
   export BUNDLER_EDITOR="mvim"
   export EDITOR="mvim"
