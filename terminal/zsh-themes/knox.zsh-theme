@@ -2,21 +2,60 @@
 local current_dir='${PWD/#$HOME/~}'
 
 # VCS
-YS_VCS_PROMPT_PREFIX1=" %{$fg[white]%}on%{$reset_color%} "
+YS_VCS_PROMPT_PREFIX1=" %{$fg[white]%}on%{$reset_color%}"
 YS_VCS_PROMPT_PREFIX2="%{$fg[cyan]%}"
 YS_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 YS_VCS_PROMPT_DIRTY=" %{$fg[red]%}+"
 YS_VCS_PROMPT_CLEAN=" %{$fg[green]%}o"
 
-# TODO: Git info: Staged, Ahead and Unstaged are currently in progress.
-local git_info='$(git_prompt_info)'
+
+function my_git_prompt_info() {
+  tester=$(git rev-parse --git-dir 2> /dev/null) || return
+
+  INDEX=$(git status --porcelain 2> /dev/null)
+  STATUS=""
+
+  # is branch ahead?
+  #if $(echo "$(git log origin/$(current_branch)..HEAD 2> /dev/null)" | grep '^commit' &> /dev/null); then
+  #  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD"
+  #fi
+
+  # is anything staged?
+  if $(echo "$INDEX" | command grep -E -e '^(D[ M]|[MARC][ MD]) ' &> /dev/null); then
+    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED"
+  fi
+
+  # is anything unstaged?
+  if $(echo "$INDEX" | command grep -E -e '^[ MARC][MD] ' &> /dev/null); then
+    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNSTAGED"
+  fi
+
+  # is anything untracked?
+  if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
+    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED"
+  fi
+
+  # is anything unmerged?
+  if $(echo "$INDEX" | command grep -E -e '^(A[AU]|D[DU]|U[ADU]) ' &> /dev/null); then
+    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNMERGED"
+  fi
+
+  if [[ -n $STATUS ]]; then
+    STATUS="$STATUS"
+  fi
+
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX $(current_branch)$ZSH_THEME_GIT_PROMPT_AHEAD $STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+
 ZSH_THEME_GIT_PROMPT_PREFIX="${YS_VCS_PROMPT_PREFIX1}${YS_VCS_PROMPT_PREFIX2}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$YS_VCS_PROMPT_SUFFIX"
 ZSH_THEME_GIT_PROMPT_DIRTY="$YS_VCS_PROMPT_DIRTY"
 ZSH_THEME_GIT_PROMPT_CLEAN="$YS_VCS_PROMPT_CLEAN"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[yellow]}+"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[green]}+"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[yellow]}o"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}o"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[blue]%}o"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[green]%}⇡"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[yellow]%}o"
+local git_info='$(my_git_prompt_info)'
 
 # HG info
 local hg_info='$(ys_hg_prompt_info)'
@@ -40,24 +79,24 @@ local return_code="$return_color %?"
 
 PROMPT="
 $reset_color\
-$fg_bold[white][\
+$fg_bold[blue]# \
 $reset_color\
-$fg[blue]%n$fg_bold[white]@\
+$fg[cyan]%n$fg_bold[white] at \
 $reset_color\
-$fg[blue]%m$fg_bold[white]] $fg_bold[yellow]\
+$fg[green]%m$fg_bold[white] $fg_bold[yellow]\
 $current_dir$reset_color${hg_info}${git_info} \
 
-[$return_color%?$reset_color] !%! \
+$return_color%?$reset_color !%! \
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
 PROMPT="
 $reset_color\
-$fg[red][\
+$fg[red]# \
 $reset_color\
-$fg[blue]%n$fg[red]@\
+$fg[red]%n$fg[white] at \
 $reset_color\
-$fg[blue]%m$fg[red]] \
+$fg[red]%m$fg[red] \
 $current_dir${hg_info}${git_info} \
 
 $fg[red][$return_color%?$fg[red]] $reset_color!%! \
