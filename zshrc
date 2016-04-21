@@ -5,6 +5,9 @@ if ($(alias -g run-help)) {
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
+# ZSH Completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/dknox/.oh-my-zsh
 
@@ -72,6 +75,9 @@ source $ZSH/oh-my-zsh.sh
 
 export BYOBU_PREFIX=$(brew --prefix)
 
+# Configure z for fast directory switching
+. /usr/local/etc/profile.d/z.sh
+
 # Set up terminal colors
 export BASE16_SHELL=~/dotfiles/terminal/base16-builder/output/shell
 [[ -f $BASE16_SHELL ]] && source "$BASE16_SHELL/base16-flat.light.sh"
@@ -106,7 +112,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   #export CPPFLAGS=-I/opt/X11/include
   #export LDFLAGS=-L/usr/local/opt/openssl/lib
 
-  export HOMEBREW_GITHUB_API_TOKEN="89065f1a748d7af06970f7f69d494dcc2be889ca"
+  export HOMEBREW_GITHUB_API_TOKEN="a03af0ea7036ecc5fe69717984b80fe37c44f3e4"
 
   export BUNDLER_EDITOR="mvim"
   export EDITOR="mvim"

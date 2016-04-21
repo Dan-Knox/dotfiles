@@ -1,13 +1,13 @@
 # Directory info.
-local current_dir='${PWD/#$HOME/~}'
+local current_dir='$fg_bold[white]in $fg[yellow]%3(c:…/:)%2c'
+#local current_dir='$fg_bold[white]in $fg[yellow]%30<..<%'
 
 # VCS
-YS_VCS_PROMPT_PREFIX1=" %{$fg[white]%}on%{$reset_color%}"
+YS_VCS_PROMPT_PREFIX1=" $fg_bold[white]on%{$reset_color%}"
 YS_VCS_PROMPT_PREFIX2="%{$fg[cyan]%}"
 YS_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 YS_VCS_PROMPT_DIRTY=" %{$fg[red]%}+"
 YS_VCS_PROMPT_CLEAN=" %{$fg[green]%}o"
-
 
 function my_git_prompt_info() {
   tester=$(git rev-parse --git-dir 2> /dev/null) || return
@@ -79,8 +79,6 @@ local return_code="$return_color %?"
 
 PROMPT="
 $reset_color\
-$fg_bold[blue]# \
-$reset_color\
 $fg[cyan]%n$fg_bold[white] at \
 $reset_color\
 $fg[green]%m$fg_bold[white] $fg_bold[yellow]\
@@ -91,8 +89,6 @@ $return_color%?$reset_color !%! \
 
 if [[ "$USER" == "root" ]]; then
 PROMPT="
-$reset_color\
-$fg[red]# \
 $reset_color\
 $fg[red]%n$fg[white] at \
 $reset_color\
