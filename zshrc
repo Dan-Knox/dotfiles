@@ -96,8 +96,8 @@ export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Load sensitive environment variables if they exist
-if [ -f $HOME/secrets.zsh ]; then
-  source $HOME/secrets.zsh
+if [ -f $HOME/.secrets.zsh ]; then
+  source $HOME/.secrets.zsh
 fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -111,8 +111,6 @@ if [ "$(uname -s)" = "Darwin" ]; then
   #export CPP="/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/cpp-4.2"
   #export CPPFLAGS=-I/opt/X11/include
   #export LDFLAGS=-L/usr/local/opt/openssl/lib
-
-  export HOMEBREW_GITHUB_API_TOKEN="a03af0ea7036ecc5fe69717984b80fe37c44f3e4"
 
   export BUNDLER_EDITOR="mvim"
   export EDITOR="mvim"
