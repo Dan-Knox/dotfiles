@@ -75,6 +75,10 @@ source $ZSH/oh-my-zsh.sh
 
 export BYOBU_PREFIX=$(brew --prefix)
 
+# Set zsh to use VI command mode
+bindkey -v
+export KEYTIMEOUT=1
+
 # Configure z for fast directory switching
 . /usr/local/etc/profile.d/z.sh
 

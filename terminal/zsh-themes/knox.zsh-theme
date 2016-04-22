@@ -1,9 +1,9 @@
 # Directory info.
-local current_dir='$fg_bold[white]in $fg[yellow]%3(c:…/:)%2c'
+local current_dir='%{$fg_bold[white]%}in %{$fg[yellow]%}%3(c:…/:)%2c'
 #local current_dir='$fg_bold[white]in $fg[yellow]%30<..<%'
 
 # VCS
-YS_VCS_PROMPT_PREFIX1=" $fg_bold[white]on%{$reset_color%}"
+YS_VCS_PROMPT_PREFIX1=" %{$fg_bold[white]%}on%{$reset_color%}"
 YS_VCS_PROMPT_PREFIX2="%{$fg[cyan]%}"
 YS_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 YS_VCS_PROMPT_DIRTY=" %{$fg[red]%}+"
@@ -75,7 +75,7 @@ ys_hg_prompt_info() {
 
 # Return code
 local return_color='%(1?;$fg[red];)%(1?;;%{$fg[green]%})'
-local return_code="$return_color %?"
+local return_code="%{$return_color%} %?"
 
 PROMPT="
 $reset_color\
