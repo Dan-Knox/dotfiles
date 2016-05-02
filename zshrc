@@ -91,7 +91,7 @@ source "$(brew --prefix)/etc/grc.bashrc"
 # Powerline
 #. ~/.janus/powerline/powerline/bindings/zsh/powerline.zsh
 
-export JAVA_HOME="/usr/libexec/java_home"
+#export JAVA_HOME="/usr"
 
 # Set up the correct paths for Golang
 export GO15VENDOREXPERIMENT=1
@@ -102,6 +102,11 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # Load sensitive environment variables if they exist
 if [ -f $HOME/.secrets.zsh ]; then
   source $HOME/.secrets.zsh
+fi
+
+# Load custom functions
+if [ -f "$HOME/.functions.zsh" ]; then
+  source "$HOME/.functions.zsh"
 fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
