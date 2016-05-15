@@ -1,5 +1,6 @@
 " color github
-color railscasts
+" color Zendnb
+color midnight
 
 " Set Font for GVIM/MVIM
 let s:uname = system("uname")
@@ -15,4 +16,4 @@ if s:uname == "Linux\n"
   :set guifont=Monospace
 endif
 
-set transparency=5
+set transparency=0

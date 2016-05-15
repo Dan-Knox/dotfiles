@@ -73,19 +73,42 @@ ys_hg_prompt_info() {
 	fi
 }
 
+# Indicate wether prompt is in INSERT or VI mode
+function my_prompt_mode_info() {
+  local vi_mode="%{$fg_bold[yellow]%}💩%{$reset_color%}"
+  local insert_mode="%{$fg_bold[green]%}💩%{$reset_color%}"
+
+  if [[ $KEYMAP == vicmd ]]; then
+    echo -n "${vi_mode}"
+  else
+    echo -n "${insert_mode}"
+  fi
+}
+local prompt_mode_info='$(my_prompt_mode_info)'
+
+# Redraw prompt when switching between INSERT modes
+function zle-line-init zle-keymap-select {
+  PS1="${PROMPT}"
+  # ${${KEYMAP/vicmd/$vi_mode}/(main|viins)/$insert_mode}"
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=0.1
+
 # Return code
 local return_color='%(1?;$fg[red];)%(1?;;%{$fg[green]%})'
 local return_code="%{$return_color%} %?"
 
 PROMPT="
-$reset_color\
-$fg[cyan]%n$fg_bold[white] at \
-$reset_color\
-$fg[green]%m$fg_bold[white] $fg_bold[yellow]\
-$current_dir$reset_color${hg_info}${git_info} \
+%{$reset_color%}\
+%{$fg[cyan]%}%n%{$fg_bold[white]%} at \
+%{$reset_color%}\
+%{$fg[green]%}%m \
+$current_dir%{$reset_color%}${hg_info}${git_info} \
 
-$return_color%?$reset_color !%! \
-%{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
+%{$return_color%}%?%{$reset_color%} !%! \
+${prompt_mode_info} %{$fg_bold[red]%}$ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
 PROMPT="
@@ -96,5 +119,5 @@ $fg[red]%m$fg[red] \
 $current_dir${hg_info}${git_info} \
 
 $fg[red][$return_color%?$fg[red]] $reset_color!%! \
-%{$fg[red]%}$ %{$reset_color%}"
+%{$fg[red]%}$INSERT_MODE $ %{$reset_color%}"
 fi

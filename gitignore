@@ -26,4 +26,4 @@
 # Ignore Gnome3 fontconfig folder
 /fontconfig
 
-/.ruby-version
+#/.ruby-version

@@ -68,6 +68,8 @@ plugins=(
 	git git-hubflow git-flow rbenv
 	brew gem atom hub bundler nvm
 	rbenv mux battery tmux osx
+  colored-man-pages catimg colorize
+  dircycle
 )
 
 # Source Oh-My-ZSH
@@ -78,6 +80,10 @@ export BYOBU_PREFIX=$(brew --prefix)
 # Set zsh to use VI command mode
 bindkey -v
 export KEYTIMEOUT=1
+
+# Set up and down to search history based off of current word
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
 
 # Configure z for fast directory switching
 . /usr/local/etc/profile.d/z.sh
