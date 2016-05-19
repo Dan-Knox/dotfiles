@@ -265,3 +265,6 @@ export PATH="./bin:$PATH"
 function activate_docker!() {
   eval $(docker-machine env default)
 }
+
+export PATH="$HOME/.bin:$PATH"
+eval "$(rbenv init - --no-rehash)"

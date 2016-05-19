@@ -24,5 +24,7 @@ augroup END " }
 let g:gist_post_private = 1
 
 set nonumber
+color github
+set background=light
 
 set mouse=a
