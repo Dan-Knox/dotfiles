@@ -83,6 +83,7 @@ source $HOME/dotfiles/antigen.zsh
 
 # More plugins
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
 
 export BYOBU_PREFIX=$(brew --prefix)
 
