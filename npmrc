@@ -1,6 +1,5 @@
-init-author-email = "dknox@threedotloft.com"
-init-author-name = "Dan Knox"
-init-author-url = "http://danknox.github.io"
-init-license = "MIT"
-sass_binary_path = '/Users/dknox/.atom/packages/atom-react-native-css/node_modules/node-sass/lib/extensions.js /Users/dknox/.nvm/versions/node/v5.3.0/bin/node-sass';
-
+init-author-email=dknox@threedotloft.com
+init-author-name=Dan Knox
+init-author-url=http://danknox.github.io/
+init-license=MIT
+sass_binary_path="'/Users/dknox/.atom/packages/atom-react-native-css/node_modules/node-sass/lib/extensions.js /Users/dknox/.nvm/versions/node/v5.3.0/bin/node-sass'"

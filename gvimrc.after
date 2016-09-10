@@ -2,17 +2,18 @@
 " color Zendnb
 " color midnight
 " color anokha
-color base16-bright
+" color base16-bright
+color Tomorrow-Night
 
-:set nommta	mmta
+" :set nommta	mmta
 
 " Set Font for GVIM/MVIM
 let s:uname = system("uname")
 
 if s:uname == "Darwin\n"
   " OSX configuration
-  ":set guifont=Consolas:h16
-  :set guifont=Hack-Regular:h16
+  :set guifont="Roboto Mono Medium for Powerline:h16"
+  ":set guifont=Hack-Regular:h16
   :set background=dark
 endif
 
@@ -21,4 +22,4 @@ if s:uname == "Linux\n"
   :set guifont=Monospace
 endif
 
-set transparency=0
+set transparency=8

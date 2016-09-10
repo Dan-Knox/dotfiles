@@ -193,6 +193,7 @@ alias thin='nocorrect thin'
 alias htop='nocorrect htop'
 alias gulp='nocorrect gulp'
 alias jest='nocorrect jest'
+alias ava='nocorrect ava'
 
 # Rails aliases
 alias b='bundle exec'

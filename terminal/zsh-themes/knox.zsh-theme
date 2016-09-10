@@ -97,7 +97,7 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=0.1
 
 # Return code
-local return_color='%(1?;$fg[red];)%(1?;;%{$fg[green]%})'
+local return_color='%(0?;$fg[green];)%(0?;;%{$fg[red]%})'
 local return_code="%{$return_color%} %?"
 
 PROMPT="
@@ -119,5 +119,5 @@ $fg[red]%m$fg[red] \
 $current_dir${hg_info}${git_info} \
 
 $fg[red][$return_color%?$fg[red]] $reset_color!%! \
-%{$fg[red]%}$INSERT_MODE $ %{$reset_color%}"
+${prompt_mode_info} %{$fg[red]%}$ %{$reset_color%}"
 fi
