@@ -277,5 +277,7 @@ function activate_docker!() {
   eval $(docker-machine env default)
 }
 
+alias dcmp='docker-compose'
+
 export PATH="$HOME/.bin:$PATH"
 eval "$(rbenv init - --no-rehash)"
