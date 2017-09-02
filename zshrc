@@ -85,7 +85,7 @@ source $HOME/dotfiles/antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
-export BYOBU_PREFIX=$(brew --prefix)
+export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins/
 
 # Set zsh to use VI command mode
 bindkey -v
