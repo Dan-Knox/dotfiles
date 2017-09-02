@@ -72,7 +72,7 @@ plugins=(
 	brew gem atom hub bundler nvm
 	rbenv mux battery tmux osx
   colored-man-pages catimg colorize
-  dircycle
+  dircycle docker docker-compose
 )
 
 # Source Oh-My-ZSH
@@ -194,12 +194,20 @@ alias htop='nocorrect htop'
 alias gulp='nocorrect gulp'
 alias jest='nocorrect jest'
 alias ava='nocorrect ava'
+alias console='nocorrect console'
 
 # Rails aliases
 alias b='bundle exec'
 alias bi='bundle install'
 alias brc='bundle exec rails c'
 alias brg='bundle exec rails g'
+
+# Docker Rails aliases
+alias db='docker-compose run web bundle exec'
+alias dbi='docker-compose run web bundle install'
+alias dbrc='docker-compose run web bundle exec rails c'
+alias dbrg='docker-compose run web bundle exec rails g'
+alias dguard='docker-compose run -e RAILS_ENV=test web guard'
 
 # Enable terminal colors for common commands
 alias c='pygmentize'
@@ -213,6 +221,12 @@ function dash { open "dash://{$*}" }
 alias npmig='npm install --global'
 alias npmid='npm install --save-dev'
 alias npmis='npm install --save'
+
+# Docker aliases
+alias docker='nocorrect docker'
+alias dco='docker-compose'
+alias dcm='docker-machine'
+alias dcc='docker-cloud'
 
 # Use jq for basic JSON formatting from the comamnd line
 if [ -f "$(which jq)" ]; then
