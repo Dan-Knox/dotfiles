@@ -38,3 +38,8 @@ pushd $HOME
 
   popd
 popd
+
+# Bootstrap the nested tmux/tmux.conf and
+# tmux/tmux.conf.local files.
+ln -s $HOME/.tmux/tmux.conf $HOME/.tmux.conf
+ln -s $HOME/.tmux/tmux.conf.local $HOME/.tmux.conf.local
