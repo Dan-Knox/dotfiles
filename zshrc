@@ -9,7 +9,7 @@ HELPDIR=/usr/local/share/zsh/help
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/dknox/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Add /usr/local/sbin to PATH
 export PATH=$PATH:/usr/local/sbin
@@ -68,11 +68,30 @@ ZSH_CUSTOM=$HOME/dotfiles/terminal/zsh-plugins
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
-	git git-hubflow git-flow rbenv
-	brew gem atom hub bundler nvm
-	rbenv mux battery tmux osx
-  colored-man-pages catimg colorize
-  dircycle docker docker-compose
+	git
+  #git-hubflo
+  #git-flo
+  rbenv
+	gem
+  bundler
+  nvm
+	rbenv
+  battery
+  tmux
+  colored-man-pages
+  catimg
+  colorize
+  dircycle
+  docker
+  docker-compose
+  history-substring-search
+  kube-ps1
+  kubectl
+  otp
+  perms
+  web-search
+  timer
+  vi-mode
 )
 
 # Source Oh-My-ZSH
@@ -87,8 +106,18 @@ antigen apply
 
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins/
 
+# Workaround for Rust lacking color in test output.
+export TERM=xterm-color
+
+export PATH=$PATH:~/.local/bin
+
+fpath+=~/.zfunc
+
+# load cargo
+source ~/.cargo/env
+
 # Set zsh to use VI command mode
-bindkey -v
+#bindkey -v
 export KEYTIMEOUT=1
 
 # Set up and down to search history based off of current word
@@ -96,13 +125,13 @@ bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
 # Configure z for fast directory switching
-. /usr/local/etc/profile.d/z.sh
+. /etc/profile.d/z.sh
 
 # Set up terminal colors
 export BASE16_SHELL=~/dotfiles/terminal/base16-builder/output/shell
 [[ -f $BASE16_SHELL ]] && source "$BASE16_SHELL/base16-flat.light.sh"
 
-source "$(brew --prefix)/etc/grc.bashrc"
+#source "$(brew --prefix)/etc/grc.bashrc"
 
 # Powerline
 #. ~/.janus/powerline/powerline/bindings/zsh/powerline.zsh
@@ -111,7 +140,7 @@ source "$(brew --prefix)/etc/grc.bashrc"
 
 # Set up the correct paths for Golang
 export GO15VENDOREXPERIMENT=1
-export GOROOT=$(brew --prefix go)/libexec
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
@@ -183,6 +212,10 @@ else
   # Linux specific configuration
 
   alias mvim="gvim"
+  alias pbcopy="xclip -sel clip"
+  alias apt="sudo apt"
+  alias apti="sudo apt install"
+  alias aptr="sudo apt remove"
   export PATH=$PATH:/opt/vagrant/bin
 
 fi
@@ -271,7 +304,7 @@ fi
 
 # Load nvm (Node Version Manager)
 export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
+. $NVM_DIR/nvm.sh
 export PATH="$PATH:./node_modules/.bin"
 
 # Chromium Depot Tools
@@ -286,6 +319,9 @@ fi
 
 export PATH="./bin:$PATH"
 
+# Add Inkdrop's plugin management executable: ipm
+export PATH=$PATH:"/snap/inkdrop/current/usr/lib/inkdrop/resources/app/ipm/bin/"
+
 # Set up the docker configuration
 function activate_docker!() {
   eval $(docker-machine env default)
@@ -294,4 +330,25 @@ function activate_docker!() {
 alias dcmp='docker-compose'
 
 export PATH="$HOME/.bin:$PATH"
-eval "$(rbenv init - --no-rehash)"
+
+alias lsc="colorls"
+alias colorize="pygmentize"
+alias c="pygmentize"
+
+alias dco="docker-compose"
+#alias docker="sudo docker"
+alias dguard="docker-compose run -e RAILS_ENV=test web bundle exec guard"
+alias drails="docker-compose run web bundle exec rails"
+alias truncate_docker_logs="sudo sh -c 'truncate -s 0 /var/lib/docker/containers/*/*-json.log'"
+
+# Dockerized Neovim
+alias dnvim="docker run -it -v $(pwd):/home/spacevim/src nvim /home/spacevim/src"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/dknox/google-cloud-sdk/path.zsh.inc' ]; then . '/home/dknox/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/dknox/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/dknox/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Export PlatformIO Binaries
+export PATH=~/.platformio/penv/bin:$PATH
